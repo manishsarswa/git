@@ -1,0 +1,210 @@
+mkdir for creating for directory
+git init: init stands for intialization
+git init create  empty .git file 
+ls -la show all the .(doted)files doted files are hidden
+
+cd .git
+ls
+
+touch main.txt used to create a file
+
+
+for commited a file
+1: git add .
+2: git commit -m "Initial commit"
+ //please tell me who you are
+ 
+ for identifying who i am 
+ git config --global user.email "manish.sharma@zopsmart.com"
+ git config --global user.name "manish sharma"
+ 
+ for checking confirguration of git
+ vi ~/.gitconfig
+ for closing this upar command use :wq
+ 
+ again run 
+ git commit -m "commit msg"
+ 
+ run git diff will return  the changes in the file if + is there means added and - represent removed 
+ 
+ git add . this command wil add all the files into holding area and after that when we will run commit command that that will commited only holding file not the files wo are in unstage area
+ three area 1. commit
+ 2.stage(holding)
+ 3. unstage(system folder)
+ 
+ if we want to add only one file then git add filename.txt
+ 
+ git log : will return all the commits of that file
+ 
+ 
+ history till now
+ 
+ aramuri@Raramuri:~/git_training$ history
+    1  sudo apt-get update 
+    2  sudo apt install --reinstall bcmwl-kernel-source 
+    3  go run network.go
+    4  goland
+    5  git --version
+    6  sudo apt  install git
+    7  ls
+    8  sudo apt install mysql-server
+    9  sudo mysql_secure_installation
+   10  sudo mysql
+   11  mkdir git_training
+   12  cd git_training
+   13  ls
+   14  git init
+   15  ls
+   16  ls--
+   17  ls-l
+   18  ls -l
+   19  ls -la
+   20  cd .git
+   21  ls
+   22  cd..
+   23  cd  ..
+   24  touch main.txt
+   25  cd main.txt
+   26  cd main
+   27  main
+   28  main.txt
+   29  touch main.txt
+   30  ls
+   31  cat main
+   32  cat main.txt
+   33  ls
+   34  git diff
+   35  git add .
+   36  git commit -m "Initial commit"
+   37  git config --global user.email "manish.sharma@zopsmart.com"
+   38  git config --global user.name
+   39  git config --global user.name "manish sharma"
+   40  git config --global user.name
+   41  git config --global user.email
+   42  ls
+   43  ls -la
+   44  vi ~/.git_config
+   45  vi ~/.gitconfig
+   46  git commit -m "hello"
+   47  git diff
+   48  git add main.txt
+   49  git diff
+   50  git commit -m "welcome to zopsmart"
+   51  git log
+   52  history
+
+
+
+
+
+for checking which file in staged area type git diff --staged
+
+branch is  collection of commites , nothing but a pointer to SHA256 hash ID(all commits have unique  SHA hash id)
+
+
+git branch command will show we are in which branch with  *master  *represent that its head 
+
+for creating new branch use git branch brancchname
+
+moving from one branch to another branch use git checkout branchname
+
+now if you run git branch *will be with new branch
+
+1  sudo apt-get update 
+    2  sudo apt install --reinstall bcmwl-kernel-source 
+    3  go run network.go
+    4  goland
+    5  git --version
+    6  sudo apt  install git
+    7  ls
+    8  sudo apt install mysql-server
+    9  sudo mysql_secure_installation
+   10  sudo mysql
+   11  mkdir git_training
+   12  cd git_training
+   13  ls
+   14  git init
+   15  ls
+   16  ls--
+   17  ls-l
+   18  ls -l
+   19  ls -la
+   20  cd .git
+   21  ls
+   22  cd..
+   23  cd  ..
+   24  touch main.txt
+   25  cd main.txt
+   26  cd main
+   27  main
+   28  main.txt
+   29  touch main.txt
+   30  ls
+   31  cat main
+   32  cat main.txt
+   33  ls
+   34  git diff
+   35  git add .
+   36  git commit -m "Initial commit"
+   37  git config --global user.email "manish.sharma@zopsmart.com"
+   38  git config --global user.name
+   39  git config --global user.name "manish sharma"
+   40  git config --global user.name
+   41  git config --global user.email
+   42  ls
+   43  ls -la
+   44  vi ~/.git_config
+   45  vi ~/.gitconfig
+   46  git commit -m "hello"
+   47  git diff
+   48  git add main.txt
+   49  git diff
+   50  git commit -m "welcome to zopsmart"
+   51  git log
+   52  history
+   53  touch main_2.txt
+   54  git commit
+   55  git diff
+   56  git add main_2.txt
+   57  git diff --staged
+   58  git commit 
+   59  git commit
+   60  git add main_2.txt
+   61  git commit
+   62  git log
+   63  git branch
+   64  git branch feature
+   65  git branch
+   66  git checkout feature
+   67  git branch
+   68  git commit -m "changes in first file"
+   69  git add main.txt
+   70  git commit -m "changes in first file"
+   71  git add main_2.txt
+   72  git commit -m "golang"
+   73  git log'
+   74  git log
+   75  git checkout master
+   76  touch main3.txt
+   77  git add main3.txt
+   78  git commit -m "main3 commit"
+   79  git log
+   80  git checkout feature
+   81  git log
+   82  history
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+
