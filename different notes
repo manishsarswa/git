@@ -1,0 +1,671 @@
+KEVIN SKOGLUND.
+
+WHY IS GIT NECESSARY ?
+> Manage and develop new features.
+> Find and fix problems.
+> simplify collaboration with other developers.
+
+WHAT YOU'LL LEARN HERE.
+> add files to a git repo.
+> track changes of a file overtime.
+> view and compare those changes in the file.
+
+
+Version control: 
+- tracks text changes.
+- some more changes : version 2 , version 3 … (VCS - Version control system)
+- move back and forth in versions.
+- track changes as add features/ solve a bug. So called SCM (Source code management tool)
+- VC e.g. Microsoft Word allows track changes feature, other apps also VCS in the form of history. Wiki allows rolling back an edit.
+- Track and view changes overtime, and how to move forward and backwards to undo or redo those changes.
+
+
+
+5 IMP VCS:
+- SCCS (Source code control system - 1972) with UNIX(free).
+  Primitive version control i.e. file_1.txt file_2.txt etc. Next version only stores changes/snapshots.
+
+- Revision Control system (RCS) -> faster, smarter storage. Stored the most recent file full time. and stores snapshots of previous changes. Both offered tracking changes in a single file at a time.
+
+
+- Concurrent Version Systems (CVS), 1990: multiple files, entire project, multi-user repositories. More users can work concurrently at a time. In CVS, you can have a version 7 of some file.
+
+- Apache subversion (SVN), 2000: 
+  Actually watching changes in a directory and tracking those changes in the directory(snapshots). In SVN, you can have a file as it appears in revision 7 of a project. Track history (rename file, update file as a directory). Most popular until git came out.
+
+(ABOVE FOUR USED CENTRAL CODE REPOSITORY MODEL, one central place stores all code).
+
+- Bitkeeper SCM, 2000: closed source, proprietary. 
+  Distributed version control. Used in source code management for linux kernel from 2002 to 2005.
+
+
+
+GIT: LINUS TORVALDS APRIL 2005.
+- distributed version control. (like Bitkeeper)
+- Open source and free soft.
+- linux, mac os, windows.
+- 100x faster.
+
+DISTRIBUTED VERSION CONTROL.
+- no central repo.
+- diff users maintain their own repo.
+- changes are stored as sets/patches.
+1. Tracks changes, not versions.
+2. No version system here.. change sets / "patches" can be exchanged b/w repo.
+3. Merge in change sets / Apply patches.
+
+- No single master repo. Just diff repo with their change sets.
+
+- Master is not built into git, we just say one of the repo as master to keep in sync with the project.
+
+e.g. None of the repo is right or wrong, just different changesets are applied to diff repo.
+
+Repo 1: A, B, C, D, E 
+Repo 2: A, B, D
+rEPO 3: D, G, J + A
+Repo 4: C, D, F
+
+We can merge 3 and 4 without going to a central repo, in DCS.
+
+We can have more than 1 master branches.And we can contribute to them equally and swap changes b/w them.
+
+-> No network access needed to submit our changes. So it's faster. You can work on a plane.
+-> No single point of failure (in CVS, SVN , central repo is single point of failure)
+
+-> Using forks, developers can work on features and then submit those change sets for inclusion or rejection. Powerful and flexible tool.
+
+ALL REPO IS CONSIDERED EQUAL BY GIT.
+
+
+
+git-scm.com/download/linux
+
+
+MACOS uses UNIX internally, so all commands in ac should run in Linux.
+
+BASIC CONFIG OF GIT:
+-> System level config: applies to each user in the system. (defaults)
+   /etc/gitconfig
+   Program Files\Git\etc\gitconfig
+
+-> User Level : for a single user logged in
+   ~/.gitconfig (Home directory)
+
+-> Project by project basis.
+   my_project/.git/config
+
+MAKE CONFIG IN THOSE THREE PLACES 
+1> git config --system
+2> git config --global
+3> git config 
+for the above three given.
+
+MUST SET:
+git config --global user.name "Ishan Pandey"
+git config --global user.email "ishan. …..."
+
+//to see all config: 
+git config --list lists all of your configurations, keep pressing space.
+
+// to see a single configuration
+git config user.name
+
+cd ~
+cat .gitconfig
+
+SETTING EDITOR FOR GIT
+git config --global core.editor "code --wait"
+// tells vscode to boot up and then wait for git to tell it what to do as the next step.
+git config --global color.ui true
+
+
+GIT AUTO COMPLETION (MAC, LINUX)
+(type commands using tab key to guess.) is a seperate script, 
+
+https://github.com/git/git 
+contrib/completion/ use bash file (linux)
+
+Click raw and copy paste all text, save file as given in link.
+~/.git-completion.bash
+
+
+save page as git-completion.bash
+
+And then mv git-completion.bash to .git-completion.bash
+do ls -la to check all . files, so we got a script on our computer, now tell UNIX to run it whenever we open our window.
+
+-> Adding to bashrc or bash_profile. You can use either of them do some shell scripting.
+
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
+fi
+
+Now close the window (terminal), open once again (script runs).
+do git h (press tab), woohoo.
+
+If multiple options: 2 tabs shows all options
+
+then you can write min chars and press tab.
+
+
+
+GIT HELP : FINDING INFO ABOUT HOW TO USE GIT
+
+git help
+
+git help <you want to learn> brings manual page for logs
+man git-log (alternatively)
+
+
+
+INITIALISE REPO: (PROJECT TO USE GIT)
+cd project
+ls
+git init
+ls -la
+
+.git tracks all the changes in this repo
+
+WHERE GIT FILES ARE STORED
+ls -la .git
+-> branches, hooks, info, objects, refs, 
+
+You will need nothing to deal with except the config file of the project
+cat .git/config
+
+If you remove .git directory, git will be removed from the project.
+
+MAKE SOME CHANGES THEN TRACK THOSE CHANGES.
+git add . (hey git add all changes which are in current directory)
+git commit -m "Initial commit" (-m for message, now we want git to commit it and track it forever)
+
+MAKE CHANGES, ADD THEM , THEN COMMIT THE MESSAGE.
+
+
+GOOD COMMIT MESSAGES:
+A short single line summary (< 50 chars)
+(blank line optional)
+for longer description, each line < 72 chars
+
+Use present tense. e.g. Fix for a bug / fixes a bug.
+
+
+Bullet points -> use asterisks, or hyphens(!)
+
+Can add "tracking numbers" for bugs or support requests.
+
+Can develop shorthand for your org.
+"[css, js] fixes tampon issue"
+"bugfix: "
+
+Be clear and descriptive:
+-----------------------------------------------------------------
+"Add missing hyphen in project section of HTML"
+
+"Changed user authentication to use Blowfish"
+
+example: ghi -> github issue
+
+
+"ghi2394 - Fixes bug in admin logout
+
+
+When an admin logged out of the admin area, they could not login to the members area because their session[:userid] was still set to admin ID. This patch fixes the bug by setting session[:user_id] to nil when any user logs out of any area."
+------------------------------------------------------------------
+
+
+
+VIEW THE COMMIT LOG:
+git log
+all the logs till now in this repo
+
+e.g.
+commit 3159654680ab608bb92a6b067cd7cc75676c1f4c (HEAD -> master)
+Author: Ishan Pandey <ishan.parasar.3359@gmail.com>
+Date:   Mon Dec 28 22:05:51 2020 +0530
+
+    Initial commit
+
+
+
+-> unique id for every commit, 
+Author , email
+Date
+
+Commit message
+
+
+git help log
+
+USEFUL ONES:
+// Show 5 most recent commit logs
+git log -n 5
+
+// Limit log by time, say date from to present
+git log --since=2019-01-01
+
+// Limit by until
+git log --until=2020-12-25
+
+// Limit by author (you can only type a part, it does string matching by itself, you can also type in allsmall)
+git log --author="Ishan"
+
+// If more than one ishan, then all will show up.
+
+
+// Search for a commit message.
+GREP -> GLOBALLY SEARCH FOR REGULAR EXPRESSIONS
+git log --grep="BugFix" //bugfix wont work.
+git log --grep="ghi" //pulls all commits related to github issue, so good commit messages are imp.
+
+With GREP,exact matching is pulled.
+
+
+
+
+
+
+
+
+GIT ARCHITECTURE:
+
+* THE THREE TREE:
+
+
+
+
+
+
+
+
+GIT COMMITS / HASH VALUES / SHA VALUE:
+
+A B C are hash values, that represent changes to multiple files and each one is a change set.
+
+A is a snapshot.
+
+Git generates checksum, converts data to a number using an algorithm. Same data is put into the same algorithm, always returning the same checksum.
+
+Checksum -> data integrity. Unique and tied directly to the contents inside.
+-> is 40 char, hexadecimal value (0-9, a-f)
+
+ALGO: SHA-1 HASH ALGORITHM.
+
+e.g. 3159654680ab608bb92a6b067cd7cc75676c1f4c
+
+You cannot change parent commit for a commit, its author or message, because that is also used as metadata into SHA-1 algo. Thus strong data integrity.
+
+Builtin.
+
+
+
+GIT HEAD POINTER:
+
+Pointer to tip of current branch in repo.
+Points to the parent of next commit to be written (/where writing takes place).
+
+
+
+
+in the current branch of our repo.
+
+By default, head pointer points to the master branch.
+
+
+
+We can move the head back and forth to write on different branches.
+
+
+
+ls -la .git
+//go lets see HEAD FILE
+cat .git/HEAD
+ref: refs/heads/master
+
+//this means you find its info in refs directory
+cat .git/refs/heads/master
+-> SHA VALUE, (keeps track of head of the last commited that head is pointing to)
+
+---------------------------------------------------------------------
+
+MAKE CHANGES TO FILES:
+
+* ADD FILES:
+
+git status
+
+Untracked files: they are not in the git repo, git is not tracking them, if you make changes to them now, those changes won't be tracked.
+
+// Adding files to staging area
+
+git add input2.txt input3.txt
+git status
+
+-> Changes to be committed:
+
+    files names
+    with an option to unstage files and reset head pointer
+
+// After commit, changes move to repo and leave the staging area.
+
+git log
+// shows HEAD pointer updated to latest commit.
+
+//Once all commits are done, the working tree becomes clean.
+
+* EDITING FILES:
+
+Once you edit a file, that's part of git. It tells us that it does not match files both in our staging or repo.
+
+* VIEW CHANGES IN A FILE BEFORE MAKING DECISION TO COMMIT INTO REPO.
+
+git status
+//shows a change
+
+//UNIX diff is called on file a (repo version) and b (working), on all the files.
+// Only shows lines that are different.
+git diff
+// - 
+// +
+
+*VIEW ONLY STAGED CHANGES:
+
+git add first_file.txt
+//adds first_file.txt to staging area
+
+Note that git diff by default compares,files in working and staging area.
+so,
+
+git status
+//will show only third_file.txt in an unstaged area.
+
+
+
+
+* DELETE FILES:
+
+Using git to track files when they are deleted.
+Two techniques:
+1> Delete file yourself / move it to trash / move it to some other directory.
+2> git rm file_name.txt
+ - rm uses UNIX remove, so it won't be visible in folders now, but if we want we can get a copy of it.
+
+ - File is moved to trash.
+ - File goes to staging area for deletion.
+    e.g. 
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    deleted:    input1.txt
+    
+ - Use git commit -m "file_name deleted." to clear the staging area / working tree clean.
+
+----------------------------------------------------------------------
+
+*TRACK, RENAME, MOVE FILES:
+
+
+- Let's change a file name from input2.txt to input4.txt.
+Then, as you do git status.
+It shows two events. -> deleted: input2 and new file: input4.txt
+Then you can do git rm input2.txt
+git add input4.txt
+
+->Now in the staging area, git recognises they are the same files if threshold matching > 50%.
+renamed: input2.txt -> input4.txt
+Then, you can also do git commit-m "" now.
+ 
+
+- Moving a file is the same as renaming it (moving it to a new file path).
+git mv input2.txt input4.txt (mv -> move)
+
+
+git mv input2.txt folder/folder_file1.txt
+
+
+---------------------------------------------------------------------
+USE GIT WITH REAL PROJECT:
+
+Navigate to the root folder of the project.
+ls -la
+All files are displayed. See if .git exists.
+If not, do git init. Or to check, do git status, checks for all parent directory for existence of .git
+
+
+
+git diff
+
+You are viewing line 129, and 7 lines from there in a copy (prev) of explorers.html
+
+it is showing 3above and 3below lines more, but that is configurable.
+
+Uses paginator, so space bar to go to the next change.
+Or f-> forward
+b->backward
+
+To change the wrapping, type -S and hit enter. (Wrapping / Chopping)
+
+> git diff --color-words
+
+
+
+
+STAGE AND COMMIT SHORTCUTS:
+
+Skip the adding / staging step, if you know all to add and you know it.
+git commit -a/--all
+> Stages and commits all changes to tracked files.
+> Does Not include untracked files. You need to add it to the staging area manually.
+
+git commit -am "Edits support phone number."
+
+// to view commit:git log -n1
+
+View a commit:
+git show <whole SHA for that commit / just 6-8 chars from front>
+
+-> returns diff of all the changes you made. (in paginator mode)
+f to go forward, b for backward, q for quit.
+
+git show <SHA> --color-words
+
+
+COMPARE COMMITS:
+// Compare two different versions and show me changes between them.
+git diff <SHA1>..<SHA2>
+
+Use the down arrow for more.
+
+-> to compare commits between different branches.
+-> " " tag versions.
+
+
+-> HEAD always refers to the latest commit.
+git diff <SHA1>..HEAD --color-words
+
+
+MULTILINE COMMITS:
+git commit -a
+Then waits and opens up COMMIT_EDITMSG, put your multiline commit message and closes that file. Commit is done now.
+
+git log (for full)
+git log --oneline (for single line / first line of commit only - condensed version)
+
+SMALL COMMITS/ATOMIC: affect a single thing.
+// watch again…
+
+----------------------------------------------------------------------
+
+UNDO WORKING DIRECTORY CHANGES:
+* 
+Once you change a file, save it and close the file. Now undo button ctrl+z wont work.
+
+But that's not a problem, if git was tracking it because it knows how a file looks.
+
+After something was deleted accidently. 
+git status //file that changed.
+git diff // the deleted part in red.
+
+You can use checkout to do that. It's a flexible command and you can use it with branches.
+Checkout a file in the current branch.
+
+-- tells git don't go to a different branch.
+git checkout -- <filename like index.html> // it discards the changes we made.
+
+
+UNSTAGE FILES:
+
+git add tours* 
+will stage e.g. tours.html, tours/input.txt, tours/ input2.txt and all such things
+
+git reset HEAD tours.html // reset the tours.html to HEAD/ last commit made.
+
+git checkout -- . // to reset all the files, discard all changes made to them after the previous commit and restore them to the previous commit.
+
+
+
+AMEND COMMITS:
+
+
+If you need to make changes, further back in the commits, then we can use some advanced techniques.
+They are not easy, git doesn't want you to change previous commits.
+
+Exception: make changes to current commit, HEAD. 
+
+Amend: will take what's in staging and add it to repo.
+git commit --amend  -m "Reorder recommended items for commit"
+
+Using this you can amend last change, last commit message. Notice that SHA will always change.
+
+
+Now the last commit is gone and a new commit / SHA value of HEAD is present. 
+git show <SHA value of last commit> // to see latest commit.
+
+RETRIEVE OLD VERSIONS OF FILES:
+
+-> Git only allows amending most recent commits.
+-> Edits which undo changes are most recent ones. As it will truly reflect what happened.
+// -- for current branch, then file name jiska SHA vala snapshot ab chahiye.
+
+git checkout <SHA value jo chahiye ab snapshot> -- explorers.html
+
+-> Now your working directory me file will have changes asked, and the file will be already staged.
+
+
+git diff --staged
+
+// to see the changes made.
+
+
+
+
+
+
+REVERT A COMMIT:
+Do the opposite, go backwards. Undo changes A, B, C made previously.
+Make a new commit, that simply reverses it.
+
+git revert <SHA> ,
+an editor opens with COMMIT_EDITMSG.
+
+What is it that's being changed? -> message, SHA value above mentioned.
+
+git status -> working tree is clean.
+
+
+REMOVE UNTRACKED FILES FOREVER (those which we don't want to be tracked forever in this project, they may change)
+All files that are untracked (not in repo, or in staging tree), are unstaged and never before tracked. Then, 
+git clean -n
+-> would remove
+
+git clean -f
+-> removing
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------
+IGNORE FILES using GITIGNORE:
+Project/.gitignore will tell git rules to follow to ignore the files. Changes made to ignored files will be ignored by git.
+
+To ignore a file:
+-> Put name of the file
+-> Pattern matching (Regular Expressions). *?[aeiou][0-9]
+logs/*.txt
+-> Negative expressions
+*.php
+!index.php meaning ignore all files ending in .php and dont ignore index.php
+
+-> Ignore all files in a directory using a trailing slash.
+assets/videos/
+-> Comments using pound/# sign
+-> Blank lines are skipped.
+e.g.
+# Ignore the access.log file
+# These may be imaginary.
+access.log
+*.zip
+*.gz
+*.log
+assets/photoshop/
+assets/videos/
+!assets/videos/video_*.mp4
+*.txt
+
+
+
+
+Use git add . to include .gitignore, and then git commit -am "Add .gitignore"
+
+IDEAS ON KINDS TO IGNORE:
+
+1. Compiled version of source code.
+2. Compressed files.
+3. Logs , databases.
+4. OS generated files.
+5. User uploaded assets.
+
+https://github.com/github/gitignore
+
+HOW TO GLOBALLY IGNORE FILES? WHEN YOU HAVE 4-5 PROJECTS AND YOU WANT TO IGNORE FILES IN ALL THE PROJECTS.
+
+You can create a . file in your user directory.
+git config --global core.excludesfile ~/.gitignore_global
+
+Git only ignores untracked files till what was told above.
+If you are writing .gitignore in the middle of a project, use this….
+IGNORE TRACKED FILES:
+Untrack changes to a file it's already tracking.
+git rm --cached DB_store.txt
+This deleted/removes the file from the staging area, though file will exist in the project, but git deleted the cached version (previous) of the file.
+Use git diff --staged 
+to find what it did.
+
+----------------------------------------------------------------------
+
+TRACK EMPTY DIRECTORIES:
+Git is a file tracking system.
+TRacks files. 
+Tracks directories it uses to get the files.
+Ignores directories with no file.
+
+git ls-tree HEAD means list the files tracked (in the working tree) at last commit / HEAD.
+
+Notice, you won't find empty directories in it.
+
+When you want to have an empty directory as part of the project: make sure that it's not empty. e.g. made for storing log files, or for users for some purpose.
+Inside that folder keep a . file. You can name it .gitkeep as it is convention.
+
+touch command creates a file if it doesn't exist, if it exists, then it updates it creation time.
+
+
+   
