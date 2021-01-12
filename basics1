@@ -1,0 +1,169 @@
+for renaming current branch use git branch -m new_name
+renaming is only done of the current branch
+
+SHA256 is based on previous commit SHA256
+
+for deleting branch first we have to checkout from that branch and then we can delete command : git branch -D branchname(this is work if the branch is not merged)
+if branch are merged then -d will also work
+
+
+merging of two branch: git merge branchname
+
+for checking the structure of branches we have to use the command git log --pretty --oneline --graph
+
+difference between merge and rebase?
+
+
+for cloning git clone url
+
+for checking branches use git branch -a : we will see orgin/master and master
+origin/master is remote and its read only mode 
+master is for our on system
+
+
+for pushing the code of the branch use git push origin branchname
+
+for fetching all the branches use git fetch origin 
+if we want to fetch a specific branch use git fetch origin branchname
+
+
+
+1  sudo apt-get update 
+    2  sudo apt install --reinstall bcmwl-kernel-source 
+    3  go run network.go
+    4  goland
+    5  git --version
+    6  sudo apt  install git
+    7  ls
+    8  sudo apt install mysql-server
+    9  sudo mysql_secure_installation
+   10  sudo mysql
+   11  mkdir git_training
+   12  cd git_training
+   13  ls
+   14  git init
+   15  ls
+   16  ls--
+   17  ls-l
+   18  ls -l
+   19  ls -la
+   20  cd .git
+   21  ls
+   22  cd..
+   23  cd  ..
+   24  touch main.txt
+   25  cd main.txt
+   26  cd main
+   27  main
+   28  main.txt
+   29  touch main.txt
+   30  ls
+   31  cat main
+   32  cat main.txt
+   33  ls
+   34  git diff
+   35  git add .
+   36  git commit -m "Initial commit"
+   37  git config --global user.email "manish.sharma@zopsmart.com"
+   38  git config --global user.name
+   39  git config --global user.name "manish sharma"
+   40  git config --global user.name
+   41  git config --global user.email
+   42  ls
+   43  ls -la
+   44  vi ~/.git_config
+   45  vi ~/.gitconfig
+   46  git commit -m "hello"
+   47  git diff
+   48  git add main.txt
+   49  git diff
+   50  git commit -m "welcome to zopsmart"
+   51  git log
+   52  history
+   53  touch main_2.txt
+   54  git commit
+   55  git diff
+   56  git add main_2.txt
+   57  git diff --staged
+   58  git commit 
+   59  git commit
+   60  git add main_2.txt
+   61  git commit
+   62  git log
+   63  git branch
+   64  git branch feature
+   65  git branch
+   66  git checkout feature
+   67  git branch
+   68  git commit -m "changes in first file"
+   69  git add main.txt
+   70  git commit -m "changes in first file"
+   71  git add main_2.txt
+   72  git commit -m "golang"
+   73  git log'
+   74  git log
+   75  git checkout master
+   76  touch main3.txt
+   77  git add main3.txt
+   78  git commit -m "main3 commit"
+   79  git log
+   80  git checkout feature
+   81  git log
+   82  history
+   83  git branch
+   84  git branch master
+   85  git checkout master
+   86  git branch updation
+   87  ls 
+   88  git log
+   89  git branch
+   90  git checkout updation
+   91  git add main_2.txt
+   92  git commit -m "new updation branch commit"
+   93  git log
+   94  git branch -m newmodule
+   95  git log
+   96  git checkout master
+   97  git branch
+   98  git branch -d newmodule
+   99  git checkout master
+  100  git merge  feature
+  101  git log
+  102  git branch  -d feature
+  103  git log
+  104  git log --pretty --oneline --graph
+  105  cd ..
+  106  mkdir git_training1
+  107  cd git_trining1
+  108  cd git_training1
+  109  git clone https://github.com/sreeram-zs/zs-training.git
+  110  run git branch
+  111  git branch
+  112  ls
+  113  cd zs-training
+  114  git branch
+  115  git branch -a
+  116  git remote -v
+  117  git branch
+  118  git branch manish_sharma
+  119  git checkout manish_sharma
+  120  touch manish
+  121  git add manish
+  122  git commit -m "added manish"
+  123  git log
+  124  git push origin 
+  125  git checkout manish_sharma
+  126  git push origin
+  127  git push origin manish_sharma
+  128  git branch -a
+  129  git fetch origin
+  130  git branch -a
+  131  git checkout bittu
+  132  git branch
+  133  git branch -
+  134  git branch -a
+  135  git checkout origin/ishan
+  136  git branch -a
+  137  git log --preety --oneline --graph
+  138  git log --pretty --oneline --graph
+  139  history
